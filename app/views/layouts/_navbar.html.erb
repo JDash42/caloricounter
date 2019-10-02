@@ -1,0 +1,35 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item">
+      <div class="title is-2">
+        <%= link_to 'Caloric Counter', root_path %>
+      </div>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <% if current_user %>
+            <li>Hello <%= current_user.email%></li>
+            <li class ="button is-light"><%= link_to 'Activities', activities_path %></li>
+            <li class ="button is-light"><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+    
+          <% else %>
+              <li class ="button is-light"><%= link_to 'Sign up',  new_user_registration_path %></li>
+              <li class ="button is-light"><%= link_to 'Sign in',  new_user_session_path %></li>
+            
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

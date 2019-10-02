@@ -1,0 +1,44 @@
+<div class="container">  
+  <div class="block">
+    <div class="card">
+
+    <%= form_with(model: activity, local: true) do |form| %>
+      <% if activity.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+    
+          <ul>
+          <% activity.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="field">
+        <%= form.label :number_calories %>
+        <%= form.number_field :number_calories, id: :activity_number_calories %>
+      </div>
+    
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :description, id: :activity_description %>
+      </div>
+      
+      <div class="field">
+        <%= form.label "ingest_or_burn" %>
+        <%= form.check_box :ingest_or_burn, {id: :activity_ingest_or_burn}, true, false  %>
+      </div>
+      
+      <%= form.label :date %>
+      <%= form.date_field :date %>
+    
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+      
+    <% end %>
+
+   </div>
+  </div>
+</div>
