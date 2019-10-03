@@ -9,8 +9,24 @@ User.create!(email: "example@railstutorial.org",
             password: "foobar",
             password_confirmation: "foobar")
             
-400.times do |n|
-    number_calories = n+1
-    ingest_or_burn = n.even?
-    description = "activity number #{n+1}"
-    date = 
+50.times do |n|
+    email = "example-#{n+1}@railstutorial.org"
+    password = "password"
+    user = User.create!(email: email, password: password)
+    120.times do |a|
+        calories = a
+        if a%2 == 0
+            burnt = true
+        else
+            burnt = false
+        end
+        date = Date.today + a.days
+        description = "expample-#{a}"
+        user_id = user.id
+        Activity.create!(number_calories: calories,
+                        burnt: burnt,
+                        description: description,
+                        date: date,
+                        user_id: user_id)
+    end
+end
