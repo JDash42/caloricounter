@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @activities = Activity.all
+    @activities = Activity.where(user_id: current_user.id).paginate(page: params[:page])
   end
  
   def show
@@ -51,7 +51,7 @@ class ActivitiesController < ApplicationController
     end
  
     def activity_params
-      params.require(:activity).permit(:number_calories, :ingest_or_burn, :description,:date)
+      params.require(:activity).permit(:number_calories, :burnt, :description,:date)
     end  
     
 end
